@@ -1,46 +1,32 @@
 import React from 'react'
 import './index.scss'
+import FirstLoading from './loading/load'
+import HomeContent from './main-content/content'
+import { IboGlobalColor } from '../../common/variable/color'
+import { valentineM, valentineD } from '../../common/variable/specialDate'
 
-interface HomePropsType {
-  value: number | string
-}
-
-class HomeItem extends React.Component<HomePropsType> {
-  render() {
-    return (
-      <li className="homeList__item">
-        <span className="ibo-icon ibo-ziliaoku homeList__item-icon"></span>
-        <span> { this.props.value } </span>
-      </li>
-    )
-  }
-}
-
-/**
- * ！！！if 语句以及 for 循环不是 JavaScript 表达式，所以不能在 JSX 中直接使用。但是，你可以用在 JSX 以外的代码中
- * 使用时需要封装在函数里
- */
 class HomeApp extends React.Component {
   render() {
-    const homeTitle = 'welcome to ibo page!'
-    const listItems = () => {
-      let items = []
-      const curYear = new Date().getFullYear()
-      // 2015 年啵啵出道
-      for (let i = curYear; i > 2014; i-- ) {
-        const tempKey = `${i}year`
-        const temp = <HomeItem value={i} key={tempKey} />
-        items.push(temp)
+    let isLoading = true
+    
+    const themeColor = () => { 
+      const currM: number = new Date().getMonth() + 1
+      const currD: number = new Date().getDate()
+      if (valentineM.includes(currM) && valentineD.includes(currD)) {
+        return IboGlobalColor.valentine
+      } else {
+        return IboGlobalColor.normal
       }
-      return items
     }
-
+    const { bgColor = '#f0fcff', color = '#057748', loadColor = '#a4e2c6' } = themeColor()
+    const iboPageStyle = {
+      color: color,
+      backgroundColor: bgColor,
+    }
     return (
-      <div className="iboHome">
-        <div className="iboHome__title"> { homeTitle } </div>
-        <ul className="iboHome__list">
-          { listItems() }
-        </ul>
+      <div className="iboPage" style={iboPageStyle}>
+       { isLoading && <FirstLoading width={'85'} bgColor={bgColor} loadColor={loadColor} /> }
+       { !isLoading && <HomeContent /> }
       </div>
     )
   }

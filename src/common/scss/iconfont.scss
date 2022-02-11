@@ -1,8 +1,8 @@
 @font-face {
   font-family: "ibo-icon"; /* Project id 623881 */
-  src: url('//at.alicdn.com/t/font_623881_2h9vfaz99uh.woff2?t=1644399680000') format('woff2'),
-       url('//at.alicdn.com/t/font_623881_2h9vfaz99uh.woff?t=1644399680000') format('woff'),
-       url('//at.alicdn.com/t/font_623881_2h9vfaz99uh.ttf?t=1644399680000') format('truetype');
+  src: url('//at.alicdn.com/t/font_623881_iyey65zukx.woff2?t=1644547592831') format('woff2'),
+       url('//at.alicdn.com/t/font_623881_iyey65zukx.woff?t=1644547592831') format('woff'),
+       url('//at.alicdn.com/t/font_623881_iyey65zukx.ttf?t=1644547592831') format('truetype');
 }
 
 .ibo-icon {
@@ -11,6 +11,118 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ibo-cat:before {
+  content: "\e601";
+}
+
+.ibo-dongwutubiao-shangse-shizi:before {
+  content: "\e606";
+}
+
+.ibo-sharpicons_Panda:before {
+  content: "\e789";
+}
+
+.ibo-sharpicons_Pig:before {
+  content: "\e78b";
+}
+
+.ibo-sharpicons_Cat:before {
+  content: "\e790";
+}
+
+.ibo-sharpicons_Bull:before {
+  content: "\e791";
+}
+
+.ibo-sharpicons_Cheetah:before {
+  content: "\e792";
+}
+
+.ibo-a-zhukatongdongwu:before {
+  content: "\e769";
+}
+
+.ibo-penzai01:before {
+  content: "\eda2";
+}
+
+.ibo-penzai02:before {
+  content: "\eda3";
+}
+
+.ibo-penzai03:before {
+  content: "\eda4";
+}
+
+.ibo-penzai04:before {
+  content: "\eda5";
+}
+
+.ibo-penzai05:before {
+  content: "\eda6";
+}
+
+.ibo-penzai06:before {
+  content: "\eda7";
+}
+
+.ibo-penzai07:before {
+  content: "\eda8";
+}
+
+.ibo-penzai08:before {
+  content: "\eda9";
+}
+
+.ibo-penzai09:before {
+  content: "\edaa";
+}
+
+.ibo-penzai10:before {
+  content: "\edab";
+}
+
+.ibo-penzai11:before {
+  content: "\edac";
+}
+
+.ibo-penzai12:before {
+  content: "\edad";
+}
+
+.ibo-penzai13:before {
+  content: "\edae";
+}
+
+.ibo-penzai14:before {
+  content: "\edaf";
+}
+
+.ibo-penzai15:before {
+  content: "\edb0";
+}
+
+.ibo-penzai16:before {
+  content: "\edb1";
+}
+
+.ibo-penzai17:before {
+  content: "\edb2";
+}
+
+.ibo-penzai18:before {
+  content: "\edb3";
+}
+
+.ibo-penzai19:before {
+  content: "\edb4";
+}
+
+.ibo-penzai20:before {
+  content: "\edb5";
 }
 
 .ibo-ziliaoku:before {
