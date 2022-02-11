@@ -5,6 +5,7 @@ interface Props {
   width: number | string,
   bgColor: string,
   loadColor: string,
+  animationTime: number, // 按毫秒
   [key: string]: unknown
 }
 
@@ -16,6 +17,7 @@ class FirstLoading extends React.Component<Props> {
     const loadingBarStyle = {
       width: `${this.props.width}%`,
       backgroundColor: this.props.loadColor,
+      transition: `all linear ${this.props.animationTime}ms`,
     }
     
     return (

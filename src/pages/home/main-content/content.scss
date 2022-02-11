@@ -1,5 +1,10 @@
-.homeList {
-  &__item {
+.iboHome {
+  opacity: 0;
+  transition: opacity ease .85s;
+  &.active {
+    opacity: 1;
+  }
+  &__list-item {
     font-size: 20px;
   }
 }

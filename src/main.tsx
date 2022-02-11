@@ -1,9 +1,9 @@
 
 import ReactDOM from 'react-dom'
 import './common/scss/common.scss'
-import { HomeApp } from './App'
+import IboApp from './App'
 
 ReactDOM.render (
-  <HomeApp />,
+  <IboApp />,
   document.getElementById('root')
 )
