@@ -1,0 +1,29 @@
+.iboMenu {
+  position: fixed;
+  top: 0;
+  right: 28px;
+  font-family: 'Pacifico';
+  &__list-item {
+    font-size: 20px;
+  }
+  &__inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100px;
+    min-height: 180px;
+    max-width: 320px;
+    max-height: 580px;
+    background-color: rgba(24,24,27,0.9);
+    background-blend-mode: multiply;
+    overflow: hidden;
+    color: #fff;
+  }
+  &__bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 180px;
+  }
+}

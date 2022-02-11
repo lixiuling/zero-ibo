@@ -4,7 +4,10 @@
   &.active {
     opacity: 1;
   }
-  &__list-item {
-    font-size: 20px;
+  &__title {
+    padding: 18px;
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
   }
 }
