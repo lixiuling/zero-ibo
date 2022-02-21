@@ -1,6 +1,5 @@
 import React from 'react';
 import './content.scss'
-import IboMenu from '../menu/menu'
 
 interface HomeProps {
   [key: string]: unknown
@@ -15,7 +14,7 @@ class HomeContent extends React.Component<HomeProps, HomeState> {
       mainClassName: 'iboHome'
     }
   }
-  componentDidMount() {
+  componentDidMount = () => {
     setTimeout(() => {
       this.setState({mainClassName: 'iboHome active'})
     }, 280)
@@ -25,7 +24,6 @@ class HomeContent extends React.Component<HomeProps, HomeState> {
     return (
       <div className={this.state.mainClassName}>
         <div className="iboHome__title"> { homeTitle } </div>
-        <IboMenu />
       </div>
     )
   }

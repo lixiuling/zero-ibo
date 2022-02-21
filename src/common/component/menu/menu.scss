@@ -1,0 +1,99 @@
+.iboMenu {
+  position: fixed;
+  top: 0;
+  right: 28px;
+  font-family: 'Pacifico';
+  z-index: 9;
+  &__list-item {
+    font-size: 20px;
+  }
+  &__inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100px;
+    min-height: 180px;
+    max-width: 320px;
+    max-height: 580px;
+    background-color: rgba(24,24,27,0.9);
+    background-blend-mode: multiply;
+    overflow: hidden;
+    color: #fff;
+  }
+  &__bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1;
+  }
+  &__title {
+    font-size: 24px;
+  }
+  &__button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    &.active {
+      .iboMenu__button-item {
+        opacity: 0;
+      }
+      .iboMenu__button-item02:before {
+        top: 0px;
+        transform: rotate(45deg);
+        width: 38px;
+        margin-left: -4px;
+      }
+      .iboMenu__button-item02:after {
+        top: 0px;
+        transform: rotate(-45deg);
+        width: 38px;
+        margin-left: -4px;
+      }
+    }
+  }
+  &__button-item {
+    display: block;
+    width: 30px;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    opacity: 1;
+    transition: all .5s ease;
+  }
+  &__button-item02 {
+    &:before, &:after {
+      display: block;
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: #fff;
+      position: absolute;
+      left: 0;
+      right: 0;
+      opacity: 1;
+      transition: all .5s ease;
+    }
+    &:before {
+      top: -12px;
+    }
+    &:after {
+      bottom: -12px;
+    }
+  }
+  &__icon {
+    > span {
+      font-size: 42px;
+      color: #0eb83a;
+    }
+  }
+}

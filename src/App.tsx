@@ -1,5 +1,6 @@
 import React from "react"
 import HomeApp from "./pages/home"
+import IboMenu from './common/component/menu/menu'
 import { IboGlobalColor } from './common/variable/color'
 import { valentineM, valentineD } from './common/variable/specialDate'
 
@@ -20,12 +21,12 @@ class IboApp extends React.Component {
       color: color,
       backgroundColor: bgColor,
     }
-    
     return (
       <div 
         className="iboPage"
         style={iboPageStyle}
-      >
+      > 
+        <IboMenu />
         <HomeApp bgColor={bgColor} loadColor={loadColor}  />
       </div>
     )
