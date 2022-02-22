@@ -34,7 +34,7 @@ class IboMenu extends React.Component<MenuProps, MenuState> {
     }
   }
   handleMenuClick = (): void => {
-    this.setState({menuActive: true})
+    this.setState({menuActive: !this.state.menuActive})
   }
   render() {
     const listItems = () => {

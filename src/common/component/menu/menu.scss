@@ -2,11 +2,13 @@
   position: fixed;
   top: 0;
   right: 28px;
-  font-family: 'Pacifico';
+  font-family: Pacifico;
   z-index: 9;
+
   &__list-item {
     font-size: 20px;
   }
+
   &__inner {
     position: absolute;
     top: 0;
@@ -15,11 +17,12 @@
     min-height: 180px;
     max-width: 320px;
     max-height: 580px;
-    background-color: rgba(24,24,27,0.9);
+    background-color: rgb(24 24 27 / 90%);
     background-blend-mode: multiply;
     overflow: hidden;
     color: #fff;
   }
+
   &__bar {
     position: absolute;
     top: 0;
@@ -32,32 +35,39 @@
     flex-direction: column;
     line-height: 1;
   }
+
   &__title {
     font-size: 24px;
   }
+
   &__button {
     position: relative;
     width: 60px;
     height: 60px;
     cursor: pointer;
+
     &.active {
-      .iboMenu__button-item {
-        opacity: 0;
+      .iboMenu__button-item01 {
+        background: transparent;
+        transform: translateX(-50%);
       }
-      .iboMenu__button-item02:before {
-        top: 0px;
+
+      .iboMenu__button-item02::before {
+        top: 0;
         transform: rotate(45deg);
         width: 38px;
         margin-left: -4px;
       }
-      .iboMenu__button-item02:after {
-        top: 0px;
+
+      .iboMenu__button-item02::after {
+        top: 0;
         transform: rotate(-45deg);
         width: 38px;
         margin-left: -4px;
       }
     }
   }
+
   &__button-item {
     display: block;
     width: 30px;
@@ -65,15 +75,20 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: -1px;
+    margin-left: -15px;
     background: #fff;
     opacity: 1;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
+
   &__button-item02 {
-    &:before, &:after {
+    background: transparent;
+
+    &::before,
+    &::after {
       display: block;
-      content: '';
+      content: "";
       width: 30px;
       height: 2px;
       background: #fff;
@@ -81,15 +96,18 @@
       left: 0;
       right: 0;
       opacity: 1;
-      transition: all .5s ease;
+      transition: all 0.5s ease;
     }
-    &:before {
+
+    &::before {
       top: -12px;
     }
-    &:after {
+
+    &::after {
       bottom: -12px;
     }
   }
+
   &__icon {
     > span {
       font-size: 42px;

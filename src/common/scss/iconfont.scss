@@ -1,234 +1,235 @@
 @font-face {
-  font-family: "ibo-icon"; /* Project id 623881 */
-  src: url('//at.alicdn.com/t/font_623881_iyey65zukx.woff2?t=1644547592831') format('woff2'),
-       url('//at.alicdn.com/t/font_623881_iyey65zukx.woff?t=1644547592831') format('woff'),
-       url('//at.alicdn.com/t/font_623881_iyey65zukx.ttf?t=1644547592831') format('truetype');
+  font-family: ibo-icon; /* Project id 623881 */
+  src:
+    url("//at.alicdn.com/t/font_623881_iyey65zukx.woff2?t=1644547592831") format("woff2"),
+    url("//at.alicdn.com/t/font_623881_iyey65zukx.woff?t=1644547592831") format("woff"),
+    url("//at.alicdn.com/t/font_623881_iyey65zukx.ttf?t=1644547592831") format("truetype");
 }
 
 .ibo-icon {
-  font-family: "ibo-icon" !important;
+  font-family: ibo-icon !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ibo-cat:before {
+.ibo-cat::before {
   content: "\e601";
 }
 
-.ibo-dongwutubiao-shangse-shizi:before {
+.ibo-dongwutubiao-shangse-shizi::before {
   content: "\e606";
 }
 
-.ibo-sharpicons_Panda:before {
+.ibo-sharpicons_Panda::before {
   content: "\e789";
 }
 
-.ibo-sharpicons_Pig:before {
+.ibo-sharpicons_Pig::before {
   content: "\e78b";
 }
 
-.ibo-sharpicons_Cat:before {
+.ibo-sharpicons_Cat::before {
   content: "\e790";
 }
 
-.ibo-sharpicons_Bull:before {
+.ibo-sharpicons_Bull::before {
   content: "\e791";
 }
 
-.ibo-sharpicons_Cheetah:before {
+.ibo-sharpicons_Cheetah::before {
   content: "\e792";
 }
 
-.ibo-a-zhukatongdongwu:before {
+.ibo-a-zhukatongdongwu::before {
   content: "\e769";
 }
 
-.ibo-penzai01:before {
+.ibo-penzai01::before {
   content: "\eda2";
 }
 
-.ibo-penzai02:before {
+.ibo-penzai02::before {
   content: "\eda3";
 }
 
-.ibo-penzai03:before {
+.ibo-penzai03::before {
   content: "\eda4";
 }
 
-.ibo-penzai04:before {
+.ibo-penzai04::before {
   content: "\eda5";
 }
 
-.ibo-penzai05:before {
+.ibo-penzai05::before {
   content: "\eda6";
 }
 
-.ibo-penzai06:before {
+.ibo-penzai06::before {
   content: "\eda7";
 }
 
-.ibo-penzai07:before {
+.ibo-penzai07::before {
   content: "\eda8";
 }
 
-.ibo-penzai08:before {
+.ibo-penzai08::before {
   content: "\eda9";
 }
 
-.ibo-penzai09:before {
+.ibo-penzai09::before {
   content: "\edaa";
 }
 
-.ibo-penzai10:before {
+.ibo-penzai10::before {
   content: "\edab";
 }
 
-.ibo-penzai11:before {
+.ibo-penzai11::before {
   content: "\edac";
 }
 
-.ibo-penzai12:before {
+.ibo-penzai12::before {
   content: "\edad";
 }
 
-.ibo-penzai13:before {
+.ibo-penzai13::before {
   content: "\edae";
 }
 
-.ibo-penzai14:before {
+.ibo-penzai14::before {
   content: "\edaf";
 }
 
-.ibo-penzai15:before {
+.ibo-penzai15::before {
   content: "\edb0";
 }
 
-.ibo-penzai16:before {
+.ibo-penzai16::before {
   content: "\edb1";
 }
 
-.ibo-penzai17:before {
+.ibo-penzai17::before {
   content: "\edb2";
 }
 
-.ibo-penzai18:before {
+.ibo-penzai18::before {
   content: "\edb3";
 }
 
-.ibo-penzai19:before {
+.ibo-penzai19::before {
   content: "\edb4";
 }
 
-.ibo-penzai20:before {
+.ibo-penzai20::before {
   content: "\edb5";
 }
 
-.ibo-ziliaoku:before {
+.ibo-ziliaoku::before {
   content: "\e600";
 }
 
-.ibo-chakanwenjian:before {
+.ibo-chakanwenjian::before {
   content: "\e625";
 }
 
-.ibo-wenjianjia:before {
+.ibo-wenjianjia::before {
   content: "\e626";
 }
 
-.ibo-wenjianguanli:before {
+.ibo-wenjianguanli::before {
   content: "\e62b";
 }
 
-.ibo-wenjianjia1:before {
+.ibo-wenjianjia1::before {
   content: "\e627";
 }
 
-.ibo-left:before {
+.ibo-left::before {
   content: "\e624";
 }
 
-.ibo-right:before {
+.ibo-right::before {
   content: "\e667";
 }
 
-.ibo-niuyouguo:before {
+.ibo-niuyouguo::before {
   content: "\e616";
 }
 
-.ibo-huolongguo:before {
+.ibo-huolongguo::before {
   content: "\e617";
 }
 
-.ibo-qingning:before {
+.ibo-qingning::before {
   content: "\e618";
 }
 
-.ibo-taozi:before {
+.ibo-taozi::before {
   content: "\e619";
 }
 
-.ibo-pingguo:before {
+.ibo-pingguo::before {
   content: "\e61a";
 }
 
-.ibo-mugua:before {
+.ibo-mugua::before {
   content: "\e61b";
 }
 
-.ibo-shiliu:before {
+.ibo-shiliu::before {
   content: "\e61c";
 }
 
-.ibo-putao:before {
+.ibo-putao::before {
   content: "\e61d";
 }
 
-.ibo-ximei:before {
+.ibo-ximei::before {
   content: "\e61e";
 }
 
-.ibo-yezi:before {
+.ibo-yezi::before {
   content: "\e61f";
 }
 
-.ibo-xiangjiao:before {
+.ibo-xiangjiao::before {
   content: "\e620";
 }
 
-.ibo-yangtao:before {
+.ibo-yangtao::before {
   content: "\e621";
 }
 
-.ibo-yingtao:before {
+.ibo-yingtao::before {
   content: "\e622";
 }
 
-.ibo-xigua:before {
+.ibo-xigua::before {
   content: "\e623";
 }
 
-.ibo-hamigua:before {
+.ibo-hamigua::before {
   content: "\e610";
 }
 
-.ibo-mangguo:before {
+.ibo-mangguo::before {
   content: "\e611";
 }
 
-.ibo-lizi:before {
+.ibo-lizi::before {
   content: "\e612";
 }
 
-.ibo-caomei:before {
+.ibo-caomei::before {
   content: "\e613";
 }
 
-.ibo-ningmeng:before {
+.ibo-ningmeng::before {
   content: "\e614";
 }
 
-.ibo-mihoutao:before {
+.ibo-mihoutao::before {
   content: "\e615";
 }

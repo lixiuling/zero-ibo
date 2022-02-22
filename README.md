@@ -7,6 +7,7 @@
 ### 代码规范
 1、tslint https://www.jianshu.com/p/f7f96bd723fd
 2、 https://juejin.cn/post/6844903684837474312
+3、前端工程化： https://juejin.cn/post/6892003555818143752
 
 
 ### React Fiber

@@ -1,9 +1,11 @@
 .iboHome {
   opacity: 0;
-  transition: opacity ease .85s;
+  transition: opacity ease 0.85s;
+
   &.active {
     opacity: 1;
   }
+
   &__title {
     padding: 18px;
     font-size: 46px;
