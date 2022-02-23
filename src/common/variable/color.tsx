@@ -1,8 +1,4 @@
-interface ColorItem {
-  bgColor: string,
-  color: string,
-  loadColor: string,
-}
+import React from "react"
 
 export const IboGlobalColor = {
   normal: {

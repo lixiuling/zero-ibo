@@ -4,7 +4,25 @@ import IboMenu from './common/component/menu/menu'
 import { IboGlobalColor } from './common/variable/color'
 import { valentineM, valentineD } from './common/variable/specialDate'
 
-class IboApp extends React.Component {
+interface AppProps {
+  [key: string]: unknown
+}
+interface StateProps {
+  menuShow: boolean
+}
+class IboApp extends React.Component<AppProps, StateProps> {
+  constructor(props: AppProps){
+    super(props),
+    this.state = {
+      menuShow: false
+    }
+  }
+
+  // 判断loading是否已经加载完，展示menu
+  loadOverCb = (value: boolean) => {
+    if (value) this.setState({menuShow: true})
+  }
+
   render() {
      // 主题色
      const themeColor = () => { 
@@ -26,8 +44,8 @@ class IboApp extends React.Component {
         className="iboPage"
         style={iboPageStyle}
       > 
-        <IboMenu />
-        <HomeApp bgColor={bgColor} loadColor={loadColor}  />
+        <IboMenu show={this.state.menuShow} />
+        <HomeApp bgColor={bgColor} loadColor={loadColor} loadOverCb={this.loadOverCb}  />
       </div>
     )
   }

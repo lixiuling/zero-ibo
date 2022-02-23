@@ -6,6 +6,8 @@ import { delay } from '../../common/common'
 interface Props {
   bgColor: string,
   loadColor: string,
+  loadOverCb: (value: boolean) => void,
+  [key: string]: unknown
 }
 interface State {
   loadingWidth: number
@@ -34,6 +36,7 @@ class HomeApp extends React.Component<Props, State> {
     this.setState({loadingWidth: 100})
     setTimeout(() => {
       this.setState({isLoading: false})
+      this.props.loadOverCb(true)
     }, 300);
   }
   render() {

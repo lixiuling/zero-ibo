@@ -8,15 +8,16 @@ interface MemuItemProps {
 class MenuItem extends React.Component<MemuItemProps> {
   render() {
     return (
-      <li className="iboMenu__list-item">
+      <a className="iboMenu__list-item">
         <span className="ibo-icon ibo-ziliaoku iboMenu__list-item-icon" />
         <span> { this.props.value } </span>
-      </li>
+      </a>
     )
   }
 }
 
 interface MenuProps {
+  show: boolean,
   [key: string]: unknown
 }
 interface MenuState {
@@ -48,7 +49,8 @@ class IboMenu extends React.Component<MenuProps, MenuState> {
       return items
     }
     return (
-      <div className="iboMenu">
+      this.props.show && 
+      <div className={classnames('iboMenu', {'menu-show': this.state.menuActive})}>
         <div className="iboMenu__inner">
           <div className="iboMenu__bar">
             <div className="iboMenu__title"> menu </div>
@@ -65,10 +67,12 @@ class IboMenu extends React.Component<MenuProps, MenuState> {
               <span className="ibo-icon ibo-penzai13" />
             </div>
           </div>
+          <div className="iboMenu__list">
+            <div className="iboMenu__list-wrap">
+              { listItems() }
+            </div>
+          </div>    
         </div>
-        {/* <ul className="iboMenu__list">
-          { listItems() }
-        </ul> */}
       </div>
     )
   }
