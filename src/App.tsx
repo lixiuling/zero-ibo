@@ -1,5 +1,5 @@
-import React from "react"
-import HomeApp from "./pages/home"
+import React from 'react'
+import HomeApp from './pages/home'
 import IboMenu from './common/component/menu/menu'
 import { IboGlobalColor } from './common/variable/color'
 import { valentineM, valentineD } from './common/variable/specialDate'
@@ -11,21 +11,21 @@ interface StateProps {
   menuShow: boolean
 }
 class IboApp extends React.Component<AppProps, StateProps> {
-  constructor(props: AppProps){
+  constructor(props: AppProps) {
     super(props),
-    this.state = {
-      menuShow: false
-    }
+      (this.state = {
+        menuShow: false,
+      })
   }
 
   // 判断loading是否已经加载完，展示menu
   loadOverCb = (value: boolean) => {
-    if (value) this.setState({menuShow: true})
+    if (value) this.setState({ menuShow: true })
   }
 
   render() {
-     // 主题色
-     const themeColor = () => { 
+    // 主题色
+    const themeColor = () => {
       const currM: number = new Date().getMonth() + 1
       const currD: number = new Date().getDate()
       if (valentineM.includes(currM) && valentineD.includes(currD)) {
@@ -40,12 +40,9 @@ class IboApp extends React.Component<AppProps, StateProps> {
       backgroundColor: bgColor,
     }
     return (
-      <div 
-        className="iboPage"
-        style={iboPageStyle}
-      > 
+      <div className="iboPage" style={iboPageStyle}>
         <IboMenu show={this.state.menuShow} />
-        <HomeApp bgColor={bgColor} loadColor={loadColor} loadOverCb={this.loadOverCb}  />
+        <HomeApp bgColor={bgColor} loadColor={loadColor} loadOverCb={this.loadOverCb} />
       </div>
     )
   }

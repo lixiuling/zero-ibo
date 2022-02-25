@@ -4,55 +4,55 @@ import HomeContent from './main-content/content'
 import { delay } from '../../common/common'
 
 interface Props {
-  bgColor: string,
-  loadColor: string,
-  loadOverCb: (value: boolean) => void,
+  bgColor: string
+  loadColor: string
+  loadOverCb: (value: boolean) => void
   [key: string]: unknown
 }
 interface State {
   loadingWidth: number
-  isLoading: boolean,
+  isLoading: boolean
   loadAnimationTime: number
 }
 
 class HomeApp extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props),
-    this.state = {
-      loadingWidth: 0,
-      isLoading: true,
-      loadAnimationTime: 280
-    }
+      (this.state = {
+        loadingWidth: 0,
+        isLoading: true,
+        loadAnimationTime: 280,
+      })
   }
-  async componentDidMount(){
+  async componentDidMount() {
     // loading 动画
     await delay(this.state.loadAnimationTime)
-    this.setState({loadingWidth: 18})
+    this.setState({ loadingWidth: 18 })
     await delay(this.state.loadAnimationTime)
-    this.setState({loadingWidth: 46})
+    this.setState({ loadingWidth: 46 })
     await delay(this.state.loadAnimationTime)
-    this.setState({loadingWidth: 85})
+    this.setState({ loadingWidth: 85 })
     await delay(this.state.loadAnimationTime)
-    this.setState({loadingWidth: 100})
+    this.setState({ loadingWidth: 100 })
     setTimeout(() => {
-      this.setState({isLoading: false})
+      this.setState({ isLoading: false })
       this.props.loadOverCb(true)
-    }, 300);
+    }, 300)
   }
   render() {
     return (
       <>
         {/* loading页面 */}
-        { this.state.isLoading && 
-          <FirstLoading 
+        {this.state.isLoading && (
+          <FirstLoading
             width={this.state.loadingWidth}
             bgColor={this.props.bgColor}
             loadColor={this.props.loadColor}
-            animationTime={this.state.loadAnimationTime} 
-          /> 
-        }
+            animationTime={this.state.loadAnimationTime}
+          />
+        )}
         {/* 首页 */}
-        { !this.state.isLoading && <HomeContent /> }
+        {!this.state.isLoading && <HomeContent />}
       </>
     )
   }

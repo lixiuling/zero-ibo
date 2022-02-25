@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import './content.scss'
 
 interface HomeProps {
@@ -10,20 +10,20 @@ interface HomeState {
 class HomeContent extends React.Component<HomeProps, HomeState> {
   constructor(props: HomeProps) {
     super(props),
-    this.state = {
-      mainClassName: 'iboHome'
-    }
+      (this.state = {
+        mainClassName: 'iboHome',
+      })
   }
   componentDidMount = () => {
     setTimeout(() => {
-      this.setState({mainClassName: 'iboHome active'})
+      this.setState({ mainClassName: 'iboHome active' })
     }, 280)
   }
   render() {
     const homeTitle = 'welcome to ibo page!'
     return (
       <div className={this.state.mainClassName}>
-        <div className="iboHome__title"> { homeTitle } </div>
+        <div className="iboHome__title"> {homeTitle} </div>
       </div>
     )
   }
