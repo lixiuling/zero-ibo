@@ -114,5 +114,6 @@ module.exports = {
     // 'arrow-spacing': 0, //=>的前/后括号
     // indent: ['error', 2], // 强制使用一致的缩进
     // 'prettier/prettier': 'error',
+    'react/no-unescaped-entities': 0, // 禁止在组件的内部存在未转义的 >, ", ' 或 }
   },
 }

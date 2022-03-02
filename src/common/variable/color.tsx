@@ -1,5 +1,3 @@
-import React from "react"
-
 export const IboGlobalColor = {
   normal: {
     bgColor: '#f0fcff',
@@ -10,5 +8,5 @@ export const IboGlobalColor = {
     bgColor: '#FFF7FB',
     color: '#f00056',
     loadColor: '#ffb3a7',
-  }
+  },
 }

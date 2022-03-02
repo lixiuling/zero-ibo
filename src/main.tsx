@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom'
 import './common/scss/common.scss'
-import IboApp from './App'
+// import IboApp from './App'
+import WebGpuDemo from './AppWebGpu'
 
-ReactDOM.render(<IboApp />, document.getElementById('root'))
+ReactDOM.render(<WebGpuDemo />, document.getElementById('root'))

@@ -6,3 +6,12 @@
 * WebGPU Shading Language  https://www.orillusion.com/zh/wgsl.html
 * WebGPU Explainer  https://www.orillusion.com/zh/explainer.html
 
+
+### 'srgb'
+？？？？？？  CSS预定义颜色空间
+
+
+
+##### navigator
+##### performance
+

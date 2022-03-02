@@ -48,8 +48,7 @@ class HomeApp extends React.Component<Props, State> {
             width={this.state.loadingWidth}
             bgColor={this.props.bgColor}
             loadColor={this.props.loadColor}
-            animationTime={this.state.loadAnimationTime}
-          />
+            animationTime={this.state.loadAnimationTime}/>
         )}
         {/* 首页 */}
         {!this.state.isLoading && <HomeContent />}
