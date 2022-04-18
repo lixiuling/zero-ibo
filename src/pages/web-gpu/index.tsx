@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.scss'
+import WebGPUCanvas from './common/canvas'
 
 interface Props {
   [key: string]: unknown
@@ -9,7 +10,7 @@ class WebGPU extends React.Component<Props> {
   render() {
     let gpuDevice = null
     let isSupportWebGpu = true
-    let webGpuSupportDesc = ''
+    let webGpuSupportDesc = 'Supported!!!'
     const initializeWebGpu = async () => {
       // Check to ensure the user agent supports WebGPU.
       if (!('gpu' in navigator)) {
@@ -28,7 +29,7 @@ class WebGPU extends React.Component<Props> {
         return false
       }
       // Request a device.
-      gpuDevice = await gpuAdapter.requestDevice()
+      gpuDevice = await gpuAdapter?.requestDevice()
       interface Info {
         [key: string]: unknown
       }
@@ -46,7 +47,7 @@ class WebGPU extends React.Component<Props> {
     initializeWebGpu()
     return (
       <div className="webGpu">
-        {isSupportWebGpu && <div> Support!!! </div>}
+        {isSupportWebGpu && <WebGPUCanvas desc={webGpuSupportDesc} />}
         {!isSupportWebGpu && <div> {webGpuSupportDesc} </div>}
       </div>
     )

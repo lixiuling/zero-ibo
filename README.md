@@ -24,3 +24,7 @@
 
 
 es6: https://es6.ruanyifeng.com/#docs/module
+
+
+
+typescript （TS）进阶篇 --- 内置高阶泛型工具类型（Utility Type）: https://blog.csdn.net/m0_52409770/article/details/123049461
