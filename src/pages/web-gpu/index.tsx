@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.scss'
-import WebGPUCanvas from './common/canvas'
+import WebGPUCanvas from './common/canvas-gpu'
+import WebGLCanvas from './common/canvas-gl'
 
 interface Props {
   [key: string]: unknown
@@ -48,7 +49,7 @@ class WebGPU extends React.Component<Props> {
     return (
       <div className="webGpu">
         {isSupportWebGpu && <WebGPUCanvas desc={webGpuSupportDesc} />}
-        {!isSupportWebGpu && <div> {webGpuSupportDesc} </div>}
+        {!isSupportWebGpu && <WebGLCanvas desc={webGpuSupportDesc} />}
       </div>
     )
   }

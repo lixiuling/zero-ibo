@@ -1,8 +1,8 @@
-interface Props {
+interface IProps {
   desc: string
 }
 
-const WebGPUCanvas = (props: Props) => {
+const WebGPUCanvas = (props: IProps) => {
   const createCanvas = async () => {
     const canvas = document.createElement('canvas')
     const context = canvas.getContext('webgpu')

@@ -28,3 +28,26 @@ es6: https://es6.ruanyifeng.com/#docs/module
 
 
 typescript （TS）进阶篇 --- 内置高阶泛型工具类型（Utility Type）: https://blog.csdn.net/m0_52409770/article/details/123049461
+
+
+#####
+[rereact-router-dom]: https://github.com/remix-run/react-router/blob/main/docs/getting-started/tutorial.md
+
+#####
+[Redux]: https://redux.js.org/tutorials/index
+[Redux中文文档]: https://redux-toolkit-cn.netlify.app/introduction/quick-start/
+[react-redux]: https://react-redux.js.org/introduction/getting-started
+(中文文档: https://www.redux.org.cn/docs/basics/UsageWithReact.html)
+[Redux Toolkit]: https://redux-toolkit.js.org/rtk-query/api/created-api/hooks#usequery
+
+
+
+#####
+https://github.com/Leecason/vue-team-talks
+
+
+#### node
+nvm use失效问题： https://www.aemon.top/2021/06/17/nvm-use-not-working/
+brew切换node版本： https://www.jianshu.com/p/14230520ac55
+                  brew unlink node@10
+                  brew link --overwrite --force node@12
