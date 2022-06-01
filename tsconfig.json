@@ -2,12 +2,19 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": false,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "DOM", 
+      "DOM.Iterable", 
+      "ESNext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": false,
+    "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -16,7 +23,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": true, // 否禁用any
+    // "outDir": "./dist/",
+    "sourceMap": true,
+    "typeRoots": [
+      "./node_modules/@webgpu/types",
+      "./node_modules/@types"
+    ],
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": [
+    "node_modules"
+  ],
+  "types": ["@webgpu/types"],
 }
