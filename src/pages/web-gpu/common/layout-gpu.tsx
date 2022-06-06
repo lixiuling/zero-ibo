@@ -1,4 +1,6 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
+
+import './layout-gpu.scss'
 
 export type TSampleInit = (params: { canvasRef: React.RefObject<HTMLCanvasElement> }) => void | Promise<void>
 
@@ -10,9 +12,26 @@ export const SampleLayout: React.FunctionComponent<
   }>
 > = (props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+
+  useEffect(() => {
+    try {
+      const p = props.init({
+        canvasRef
+      })
+
+      if (p instanceof Promise) {
+        p.catch((err: Error) => {
+          console.log('***Error:', err);
+        });
+      }
+    } catch (err) {
+      console.log('***Error', err);
+    }
+  }, [])
+
   return (
-    <div>
-      <nav className="GPU__nav"> 我是侧边栏导航 </nav>
+    <div className="GPU__page">
+      {/* <nav className="GPU__nav"> WebGPU Demo </nav> */}
       <div className="GPU__container">
         <div className="GPU__container-title"> {props.name} </div>
         <div className="GPU__container-desc"> {props.description} </div>

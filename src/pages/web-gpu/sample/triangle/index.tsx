@@ -1,6 +1,6 @@
 import { TSampleInit, makeSample } from '../../common/layout-gpu'
-import triangleVertexWGSL from './vertex.wgsl'
-import triangleFragmentWGSL from './fragment.wgsl'
+import triangleVertexWGSL from './vert.wgsl?raw'
+import triangleFragmentWGSL from './fragment.wgsl?raw'
 
 const init: TSampleInit = async ({ canvasRef }) => {
   // powerPreference: 'high-performance',
@@ -13,40 +13,25 @@ const init: TSampleInit = async ({ canvasRef }) => {
   }
   const context = canvasRef.current.getContext('webgpu');
 
-  const devicePixelRatio = window.devicePixelRatio || 1
-  const presentationSize = [
-    canvasRef.current.clientWidth * devicePixelRatio, 
-    canvasRef.current.clientHeight * devicePixelRatio
-  ]
-  const presentationFormat = context.getPreferredFormat(adapter)
+  // const devicePixelRatio = window.devicePixelRatio || 1
+  // const presentationSize = [
+  //   canvasRef.current.clientWidth * devicePixelRatio, 
+  //   canvasRef.current.clientHeight * devicePixelRatio
+  // ]
+
+  const presentationFormat = navigator.gpu.getPreferredCanvasFormat()
   context.configure({
     device,
     format: presentationFormat,
-    size: presentationSize,
+    compositingAlphaMode: 'opaque',
+    // size: presentationSize, 已弃用，根据画布的宽度和高度
   })
 
-  const bindGroupLayout = device.createBindGroupLayout({
-   entries: [
-     {
-       binding: 0,
-       visibility: GPUShaderStage.VERTEX,
-       buffer: {
-         type: 'uniform'
-       }
-     }, {
-       binding: 1,
-       visibility: GPUShaderStage.FRAGMENT,
-       buffer: {
-         type: 'uniform'
-       }
-     }
-   ]
-  })
-  const piplelineLayout = device.createPipelineLayout({
-    bindGroupLayouts: [bindGroupLayout]
-  })
+  /** MSAA 通过增加采样点来减轻几何体走样，边缘锯齿 */
+  const sampleCount = 4
+
   const pipeline = device.createRenderPipeline({
-    layout: piplelineLayout,
+    layout: device.createPipelineLayout({ bindGroupLayouts: [] }),
     vertex: {
       module: device.createShaderModule({
         code: triangleVertexWGSL
@@ -66,8 +51,22 @@ const init: TSampleInit = async ({ canvasRef }) => {
     },
     primitive: {
       topology: 'triangle-list'
+    },
+    multisample: {
+      count: sampleCount
     }
   })
+
+  const texture = device.createTexture({
+    size: {
+      width: canvasRef.current.clientWidth,
+      height: canvasRef.current.clientHeight
+    },
+    sampleCount: sampleCount,
+    format: presentationFormat,
+    usage: GPUTextureUsage.RENDER_ATTACHMENT
+  })
+  const msaa_texture = texture.createView()
 
   function frame() {
     // Sample is no longer the active page.
@@ -79,8 +78,9 @@ const init: TSampleInit = async ({ canvasRef }) => {
     const renderPassDescriptor: GPURenderPassDescriptor = {
       colorAttachments: [
         {
-          view: textureView,
-          clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
+          view: msaa_texture,
+          resolveTarget: textureView,
+          clearValue: { r: 0.85, g: 1.0, b: 0.85, a: 1.0 },
           loadOp: 'clear',
           storeOp: 'store'
         }
