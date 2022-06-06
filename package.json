@@ -11,7 +11,8 @@
   "dependencies": {
     "classnames": "^2.3.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router": "^6.3.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
@@ -19,6 +20,7 @@
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "@vitejs/plugin-react": "^1.0.7",
+    "@webgpu/types": "^0.1.17",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -29,8 +31,7 @@
     "stylelint-config-standard": "^25.0.0",
     "stylelint-scss": "^4.1.0",
     "typescript": "^4.5.4",
-    "vite": "^2.8.0",
-    "@webgpu/types": "^0.1.17"
+    "vite": "^2.8.0"
   },
   "husky": {
     "hooks": {

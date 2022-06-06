@@ -99,7 +99,7 @@ module.exports = {
     // 'react/no-set-state': 0, //防止使用setState
     // 'react/no-unknown-property': 2, //防止使用未知的DOM属性
     // 'react/prefer-es6-class': 2, //为React组件强制执行ES5或ES6类
-    // 'react/prop-types': 0, //防止在React组件定义中丢失props验证
+    'react/prop-types': off, //防止在React组件定义中丢失props验证
     // 'react/self-closing-comp': 0, //防止没有children的组件的额外结束标签
     // 'react/sort-comp': 2, //强制组件方法顺序
     // 'no-extra-boolean-cast': 0, //禁止不必要的bool转换

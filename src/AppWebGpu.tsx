@@ -1,5 +1,5 @@
 import React from 'react'
-import WebGPU from './pages/web-gpu'
+import WebDemo from './pages'
 
 interface ComProps {
   [key: string]: unknown
@@ -7,7 +7,7 @@ interface ComProps {
 
 class WebGpuDemo extends React.Component<ComProps> {
   render() {
-    return <WebGPU />
+    return <WebDemo />
   }
 }
 

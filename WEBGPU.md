@@ -40,3 +40,6 @@ WebGPU 的几个最佳实践: https://juejin.cn/post/7057344671403474958
 
 https://github.com/mcuking/offline-package-admin/
 
+
+### 关于WebGPU的一些文档
+* 浅入浅出WebGPU: https://jishuin.proginn.com/p/763bfbd72332

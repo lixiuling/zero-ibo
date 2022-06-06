@@ -1,12 +1,11 @@
 interface IProps {
-  desc: string
+  [key: string]: unknown
 }
 
 const WebGLCanvas = (props: IProps) => {
   return (
     <div>
-      <div> {props.desc} </div>
-      <div> WebGL </div>
+      <div> WebGL Triangle </div>
     </div>
   )
 }
