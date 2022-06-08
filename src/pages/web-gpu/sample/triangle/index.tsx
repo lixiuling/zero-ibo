@@ -80,7 +80,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
         {
           view: msaa_texture,
           resolveTarget: textureView,
-          clearValue: { r: 0.85, g: 1.0, b: 0.85, a: 1.0 },
+          clearValue: { r: 0.70588, g: 0.93333, b: 0.70588, a: 1.0 },
           loadOp: 'clear',
           storeOp: 'store'
         }
