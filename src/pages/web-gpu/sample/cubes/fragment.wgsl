@@ -1,3 +1,4 @@
+// 片元着色器，负责上色
 @stage(fragment)
 fn main(
   @location(0) fragUV: vec2<f32>,

@@ -18,8 +18,8 @@ const init: TSampleInit = async ({ canvasRef }) => {
   //   canvasRef.current.clientWidth * devicePixelRatio, 
   //   canvasRef.current.clientHeight * devicePixelRatio
   // ]
-
   const presentationFormat = navigator.gpu.getPreferredCanvasFormat()
+
   context.configure({
     device,
     format: presentationFormat,
@@ -27,16 +27,77 @@ const init: TSampleInit = async ({ canvasRef }) => {
     // size: presentationSize, 已弃用，根据画布的宽度和高度
   })
 
+  // 顶点和颜色动态传参
+  // 顶点
+  const vertex = new Float32Array([
+    0.0, 0.5, 0.0, // 顶点1
+    -0.5, -0.5, 0.0, // 顶点2
+    0.5, -0.5, 0.0, // 顶点3
+  ])
+  const vertexBuffer = device.createBuffer({
+    size: vertex.byteLength,
+    usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+    mappedAtCreation: true
+  })
+  // 将顶点数据写入创建的缓冲区对象vertexBuffer
+  new Float32Array(vertexBuffer.getMappedRange()).set(vertex)
+  // device.queue.writeBuffer(vertexBuffer, 0, vertex) 
+  vertexBuffer.unmap()
+  // 颜色
+  const color = new Float32Array([1.0, 0.0, 1.0, 1.0])
+  const colorBuffer = device.createBuffer({
+    size: color.byteLength,
+    usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+    mappedAtCreation: true
+  })
+  new Float32Array(colorBuffer.getMappedRange()).set(color)
+  // device.queue.writeBuffer(colorBuffer, 0, color)
+  colorBuffer.unmap()
+  // 颜色缓冲区对象在建立完成后，是需要将其装进BindGroup中的，之后我们会将这个BindGroup 传递非渲染通道
+  const uniformBingGroupLayout = device.createBindGroupLayout({
+    entries: [
+      {
+        binding: 0,
+        visibility: GPUShaderStage.FRAGMENT | GPUShaderStage.VERTEX,
+        buffer: {}
+      }
+    ]
+  })
+  const uniformBindGroup = device.createBindGroup({
+    layout: uniformBingGroupLayout,
+    entries: [
+      {
+        binding: 0, // 位置 
+        resource: {
+          buffer: colorBuffer
+        }
+      }
+    ]
+  })
+
   /** MSAA 通过增加采样点来减轻几何体走样，边缘锯齿 */
   const sampleCount = 4
-
   const pipeline = device.createRenderPipeline({
-    layout: device.createPipelineLayout({ bindGroupLayouts: [] }),
+    layout: device.createPipelineLayout({
+      bindGroupLayouts: [uniformBingGroupLayout]
+    }),
     vertex: {
       module: device.createShaderModule({
         code: triangleVertexWGSL
       }),
       entryPoint: 'main',
+      buffers: [
+        {
+          arrayStride: 4 * 3,
+          attributes: [
+            {
+              shaderLocation: 0, // 遍历索引
+              offset: 0, // 偏移
+              format: 'float32x3', // 参数格式
+            }
+          ]
+        }
+      ]
     },
     fragment: {
       module: device.createShaderModule({
@@ -87,12 +148,21 @@ const init: TSampleInit = async ({ canvasRef }) => {
       ]
     }
     
+    // 建立渲染通道，类似图层
     const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
+    // 传入渲染管线
     passEncoder.setPipeline(pipeline)
+    // 写入顶点缓冲区
+    passEncoder.setVertexBuffer(0, vertexBuffer)
+    // 把含有颜色缓冲区的BindGroup写入渲染通道
+    passEncoder.setBindGroup(0, uniformBindGroup)
+    // 绘图，3 个顶点
     passEncoder.draw(3, 1, 0, 0)
+    // 结束编码
     passEncoder.end()
-
+    // 结束指令编写,并返回GPU指令缓冲区, 并向GPU提交绘图指令，所有指令将在提交后执行
     device.queue.submit([commandEncoder.finish()])
+
     requestAnimationFrame(frame)
   }
   requestAnimationFrame(frame)

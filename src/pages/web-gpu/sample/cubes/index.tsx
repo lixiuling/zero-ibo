@@ -38,12 +38,43 @@ const init: TSampleInit = async ({ canvasRef }) => {
   new Float32Array(verticesBuffer.getMappedRange()).set(cubeVertexArray)
   verticesBuffer.unmap()
 
+  // 立方体 创建uniform buffer
+  const uniformBufferSize = 4 * 16 // matrix 4 x 4
+  const uniformBuffer = device.createBuffer({
+    size: uniformBufferSize,
+    usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+  })
+
+  // 绑定组layout
+  const uniformBindGroupLayout = device.createBindGroupLayout({
+    entries: [
+      {
+        binding: 0,
+        visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+        buffer: {}
+      }
+    ]
+  })
+  // 创建uniform bind group
+  const uniformBindGroup = device.createBindGroup({
+    // layout: pipeline.getBindGroupLayout(0),  // 创建隐式管线布局, 不建议
+    layout: uniformBindGroupLayout,
+    entries: [
+      {
+        binding: 0,
+        resource: {
+          buffer: uniformBuffer,
+        }
+      }
+    ]
+  })
+
   // 渲染管线
   const pipeline = device.createRenderPipeline({
-    // layout: device.createPipelineLayout({
-    //   bindGroupLayouts: []
-    // }),
-    layout: 'auto', // 创建隐式管线布局
+    layout: device.createPipelineLayout({
+      bindGroupLayouts: [uniformBindGroupLayout]
+    }),
+    // layout: 'auto', // 创建隐式管线布局, 不建议
     vertex: {
       module: device.createShaderModule({
         code: cubeVerticesWGSL
@@ -89,7 +120,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
     }
   })
 
-  // 纹理
+  // 创建depth texture
   const depthTexture = device.createTexture({
     size: {
       width: canvasRef.current.clientWidth,
@@ -100,28 +131,11 @@ const init: TSampleInit = async ({ canvasRef }) => {
   })
   const depth_view = depthTexture.createView()
 
-  // 绑定组
-  const uniformBufferSize = 4 * 16 // matrix 4 x 4
-  const uniformBuffer = device.createBuffer({
-    size: uniformBufferSize,
-    usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
-  })
-  const uniformBindGroup = device.createBindGroup({
-    layout: pipeline.getBindGroupLayout(0),
-    entries: [
-      {
-        binding: 0,
-        resource: {
-          buffer: uniformBuffer,
-        }
-      }
-    ]
-  })
 
   const aspect = canvasRef.current.width / canvasRef.current.height
   const progectionMatrix = mat4.create()
   mat4.perspective(progectionMatrix, (2 * Math.PI) / 5, aspect, 1, 100.0)
-  
+
   function getTransformationMatrix() {
     const viewMatrix = mat4.create()
     mat4.translate(viewMatrix, viewMatrix, vec3.fromValues(0, 0, -4))
@@ -129,7 +143,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
     mat4.rotate(
       viewMatrix,
       viewMatrix,
-      1,
+      0.85,
       vec3.fromValues(Math.sin(now), Math.cos(now), 0)
     )
 
@@ -138,13 +152,13 @@ const init: TSampleInit = async ({ canvasRef }) => {
 
     return modelViewProjectionMatrix as Float32Array
   }
-  
 
   function frame() {
     // Sample is no longer the active page.
     if (!canvasRef.current) return
 
     const transformationMatrix = getTransformationMatrix()
+    // 立方体数据写入 uniformBuffer
     device.queue.writeBuffer(
       uniformBuffer,
       0,
@@ -155,7 +169,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   
     const commandEncoder = device.createCommandEncoder()
     const textureView = context.getCurrentTexture().createView()
-    // 渲染通道
+
     const renderPassDescriptor: GPURenderPassDescriptor = {
       colorAttachments: [
         {
@@ -172,11 +186,12 @@ const init: TSampleInit = async ({ canvasRef }) => {
         depthStoreOp: 'store'
       }
     }
+
     // 通道编码
     const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor)
     passEncoder.setPipeline(pipeline)
-    passEncoder.setBindGroup(0, uniformBindGroup)
     passEncoder.setVertexBuffer(0, verticesBuffer)
+    passEncoder.setBindGroup(0, uniformBindGroup)
     passEncoder.draw(cubeVertexCount, 1, 0, 0)
     passEncoder.end()
     device.queue.submit([commandEncoder.finish()])

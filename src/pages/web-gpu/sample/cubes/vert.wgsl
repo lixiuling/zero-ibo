@@ -1,6 +1,7 @@
 struct Uniforms {
   modelViewProjectionMatrix: mat4x4<f32>,
 }
+
 @binding(0) @group(0) var<uniform>uniforms: Uniforms;
 
 struct VertexOutPut {
@@ -9,6 +10,7 @@ struct VertexOutPut {
   @location(1) fragPosition: vec4<f32>,
 }
 
+// 定点着色器，负责塑性
 @stage(vertex)
 fn main(
   @location(0) position: vec4<f32>,
