@@ -39,9 +39,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
     usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
     mappedAtCreation: true
   })
-  // 将顶点数据写入创建的缓冲区对象vertexBuffer
   new Float32Array(vertexBuffer.getMappedRange()).set(vertex)
-  // device.queue.writeBuffer(vertexBuffer, 0, vertex) 
   vertexBuffer.unmap()
   // 颜色
   const color = new Float32Array([1.0, 0.0, 1.0, 1.0])
@@ -51,7 +49,6 @@ const init: TSampleInit = async ({ canvasRef }) => {
     mappedAtCreation: true
   })
   new Float32Array(colorBuffer.getMappedRange()).set(color)
-  // device.queue.writeBuffer(colorBuffer, 0, color)
   colorBuffer.unmap()
   // 颜色缓冲区对象在建立完成后，是需要将其装进BindGroup中的，之后我们会将这个BindGroup 传递非渲染通道
   const uniformBingGroupLayout = device.createBindGroupLayout({

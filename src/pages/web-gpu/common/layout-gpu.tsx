@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+// import { mat4 } from 'gl-matrix'
 
 import './layout-gpu.scss'
 
@@ -24,6 +25,10 @@ export const SampleLayout: React.FunctionComponent<
           console.log('***Error:', err);
         });
       }
+
+      // const testMatrix = mat4.create()
+      // console.log('-------------', testMatrix)
+
     } catch (err) {
       console.log('***Error', err);
     }
