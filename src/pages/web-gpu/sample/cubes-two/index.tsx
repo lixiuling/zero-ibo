@@ -111,15 +111,15 @@ const init: TSampleInit = async ({ canvasRef }) => {
           attributes: [
             {
               // position
-              format: 'float32x4',
+              shaderLocation: 0,
               offset: cubePositionOffset,
-              shaderLocation: 0
+              format: 'float32x4',
             },
             {
               // uv
-              format: 'float32x2',
+              shaderLocation: 1,
               offset: cubeUvOffset,
-              shaderLocation: 1
+              format: 'float32x2',
             }
           ]
         }
@@ -182,13 +182,13 @@ const init: TSampleInit = async ({ canvasRef }) => {
     mat4.rotate(
       tmpMat41,
       modelMatrix1,
-      1,
+      1.7,
       vec3.fromValues(Math.sin(now), Math.cos(now), 0)
     )
     mat4.rotate(
       tmpMat42,
       modelMatrix2,
-      1,
+      0.85,
       vec3.fromValues(Math.cos(now), Math.sin(now), 0)
     )
 
