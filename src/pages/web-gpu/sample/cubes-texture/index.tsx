@@ -46,10 +46,8 @@ const init: TSampleInit = async ({ canvasRef }) => {
   let imageTexture: GPUTexture
   {
     const img = document.createElement('img')
-    // const imageUrl = new URL('../../../../assets/images/flower.jpg', import.meta.url).href
-    // img.src = imageUrl
-    img.src = require('../../../../assets/images/flower.jpg')
-    console.log('-----', img)
+    const imageUrl = new URL('/src/images/fly.jpg', import.meta.url).href
+    img.src = imageUrl
     await img.decode()
     const imageBitmap = await createImageBitmap(img)
     imageTexture = device.createTexture({
@@ -78,6 +76,16 @@ const init: TSampleInit = async ({ canvasRef }) => {
         binding: 0,
         visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
         buffer: {}
+      },
+      {
+        binding: 1,
+        visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+        sampler: {}
+      },
+      {
+        binding: 2,
+        visibility: GPUShaderStage.VERTEX | GPUShaderStage.FRAGMENT,
+        texture: {}
       }
     ]
   })

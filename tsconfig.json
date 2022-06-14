@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "types": ["node"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": [
@@ -35,6 +34,5 @@
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": [
     "node_modules"
-  ],
-  "types": ["@webgpu/types"],
+  ]
 }
