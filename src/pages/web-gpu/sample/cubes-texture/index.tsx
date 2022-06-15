@@ -28,6 +28,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
 
   // 顶点 buffer
   const verticesBuffer = device.createBuffer({
+    label: 'vertex buffer',
     size: cubeVertexArray.byteLength,
     usage: GPUBufferUsage.VERTEX,
     mappedAtCreation: true
@@ -38,6 +39,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   // uniform buffer
   const matrixSize = 4 * 16
   const uniformBuffer = device.createBuffer({
+    label: 'uniform buffer',
     size: matrixSize,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
   })
@@ -46,11 +48,12 @@ const init: TSampleInit = async ({ canvasRef }) => {
   let imageTexture: GPUTexture
   {
     const img = document.createElement('img')
-    const imageUrl = new URL('/src/images/fly.jpg', import.meta.url).href
+    const imageUrl = new URL('../../../../images/fly.jpg', import.meta.url).href
     img.src = imageUrl
     await img.decode()
     const imageBitmap = await createImageBitmap(img)
     imageTexture = device.createTexture({
+      label: 'image texture',
       size: [imageBitmap.width, imageBitmap.height, 1],
       format: 'rgba8unorm',
       usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT
@@ -60,17 +63,18 @@ const init: TSampleInit = async ({ canvasRef }) => {
       { texture: imageTexture },
       [imageBitmap.width, imageBitmap.height]
     )
-    // const image_view = imageTexture.createView()
   }
   
   // sampler
   const sampler = device.createSampler({
+    label: 'image sampler',
     magFilter: 'linear',
     minFilter: 'linear'
   })
 
   // uniform bindGroupLayout
   const uniformBindGroupLayout = device.createBindGroupLayout({
+    label: 'uniform bind group layout',
     entries: [
       {
         binding: 0,
@@ -92,6 +96,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
 
   // uniform bindGroup
   const uniformBindGroup = device.createBindGroup({
+    label: 'uniform bind group',
     layout: uniformBindGroupLayout,
     entries: [
       {
@@ -113,6 +118,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
 
   // pipeline
   const pipeline = device.createRenderPipeline({
+    label: 'pipeline',
     layout: device.createPipelineLayout({
       bindGroupLayouts: [uniformBindGroupLayout]
     }),
@@ -164,6 +170,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   })
 
   const depthTexture = device.createTexture({
+    label: 'depth texture',
     size: [canvasRef.current.clientWidth, canvasRef.current.clientHeight, 1],
     format: 'depth24plus',
     usage: GPUTextureUsage.RENDER_ATTACHMENT
