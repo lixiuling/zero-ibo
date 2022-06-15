@@ -16,17 +16,20 @@
 
   &__container {
     width: 100vw;
-    padding: 10px;
     text-align: center;
   }
 
   &__container-title {
-    margin-bottom: 15px;
+    position: fixed;
+    top: 0;
+    padding: 10px;
     font-size: 16px;
     font-weight: bold;
   }
 
   &__container-desc {
-    margin-bottom: 15px;
+    position: fixed;
+    top: 50px;
+    padding: 10px;
   }
 }

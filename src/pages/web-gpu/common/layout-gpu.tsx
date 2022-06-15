@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 // import { mat4 } from 'gl-matrix'
 
 import './layout-gpu.scss'
@@ -13,6 +13,8 @@ export const SampleLayout: React.FunctionComponent<
   }>
 > = (props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
 
   useEffect(() => {
     try {
@@ -34,13 +36,19 @@ export const SampleLayout: React.FunctionComponent<
     }
   }, [])
 
+  // window.addEventListener('resize', () => {
+  //   setWindowWidth(window.innerWidth)
+  //   setWindowHeight(window.innerHeight)
+  //   props.init({ canvasRef })
+  // })
+
   return (
     <div className="GPU__page">
       {/* <nav className="GPU__nav"> WebGPU Demo </nav> */}
       <div className="GPU__container">
         <div className="GPU__container-title"> {props.name} </div>
         <div className="GPU__container-desc"> {props.description} </div>
-        <canvas ref={canvasRef} width={600} height={600}></canvas>
+        <canvas ref={canvasRef} width={windowWidth} height={windowHeight}></canvas>
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ import {
 import cubeVerticesWGSL from './vert.wgsl?raw'
 import cubeFragmentWGSL from './fragment.wgsl?raw'
 import { mat4, vec3 } from 'gl-matrix'
+import { commomClearValue } from '../common/index'
 
 const init: TSampleInit = async ({ canvasRef }) => {
   const adapter = await navigator.gpu.requestAdapter()
@@ -174,7 +175,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
       colorAttachments: [
         {
           view: textureView,
-          clearValue: { r: 0.847, g: 0.749, b: 0.847, a: 1.0 },
+          clearValue: commomClearValue,
           loadOp: 'clear',
           storeOp: 'store'
         }

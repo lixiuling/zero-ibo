@@ -1,0 +1,1 @@
+export const commomClearValue = { r: 0.847, g: 0.749, b: 0.847, a: 1.0 }
