@@ -12,7 +12,7 @@ struct VertexOutPut {
 }
 
 // 定点着色器，负责塑性
-@stage(vertex)
+@vertex
 fn main(
   @location(0) position: vec4<f32>,
   @location(1) uv: vec2<f32>

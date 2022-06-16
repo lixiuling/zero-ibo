@@ -13,8 +13,11 @@ export const SampleLayout: React.FunctionComponent<
   }>
 > = (props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+  const windowWidth = window.innerWidth
+  const windowHeight = window.innerHeight
+  const minNum = Math.min(windowWidth, windowHeight)
+  const [canvasWidth, setCanvasWidth] = useState(minNum)
+  const [canvasHeight, setCanvasHeight] = useState(minNum)
 
   useEffect(() => {
     try {
@@ -37,8 +40,8 @@ export const SampleLayout: React.FunctionComponent<
   }, [])
 
   // window.addEventListener('resize', () => {
-  //   setWindowWidth(window.innerWidth)
-  //   setWindowHeight(window.innerHeight)
+  //   setCanvasWidth(window.innerWidth)
+  //   setCanvasHeight(window.innerHeight)
   //   props.init({ canvasRef })
   // })
 
@@ -48,7 +51,7 @@ export const SampleLayout: React.FunctionComponent<
       <div className="GPU__container">
         <div className="GPU__container-title"> {props.name} </div>
         <div className="GPU__container-desc"> {props.description} </div>
-        <canvas ref={canvasRef} width={windowWidth} height={windowHeight}></canvas>
+        <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight}></canvas>
       </div>
     </div>
   )

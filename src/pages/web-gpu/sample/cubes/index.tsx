@@ -27,7 +27,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   context.configure({
     device,
     format: presentationFormat,
-    compositingAlphaMode: 'opaque',
+    alphaMode: 'opaque',
   })
 
   // 顶点buffer

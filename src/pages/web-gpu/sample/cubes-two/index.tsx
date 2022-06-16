@@ -24,11 +24,12 @@ const init: TSampleInit = async ({ canvasRef }) => {
   context.configure({
     device,
     format: presentationFormat,
-    compositingAlphaMode: 'opaque',
+    alphaMode: 'opaque',
   })
 
   // vertex buffer
   const verticesBuffer = device.createBuffer({
+    label: 'vertex buffer',
     size: cubeVertexArray.byteLength,
     usage: GPUBufferUsage.VERTEX,
     mappedAtCreation: true

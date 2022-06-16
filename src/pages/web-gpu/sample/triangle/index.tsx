@@ -23,7 +23,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   context.configure({
     device,
     format: presentationFormat,
-    compositingAlphaMode: 'opaque',
+    alphaMode: 'opaque',
     // size: presentationSize, 已弃用，根据画布的宽度和高度
   })
 
