@@ -1,6 +1,7 @@
 import { TSampleInit, makeSample } from '../../common/layout-gpu'
 import triangleVertexWGSL from './vert.wgsl?raw'
 import triangleFragmentWGSL from './fragment.wgsl?raw'
+import { commomClearValue } from '../common/index'
 
 const init: TSampleInit = async ({ canvasRef }) => {
   // powerPreference: 'high-performance',
@@ -138,7 +139,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
         {
           view: msaa_texture,
           resolveTarget: textureView,
-          clearValue: { r: 0.70588, g: 0.93333, b: 0.70588, a: 1.0 },
+          clearValue: commomClearValue,
           loadOp: 'clear',
           storeOp: 'store'
         }

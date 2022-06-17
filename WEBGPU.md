@@ -28,7 +28,7 @@
 
 
 #### Compute Shader基础
-https://juejin.cn/post/7058263089413619749
+矩阵计算: https://juejin.cn/post/7058263089413619749
 
 
 
