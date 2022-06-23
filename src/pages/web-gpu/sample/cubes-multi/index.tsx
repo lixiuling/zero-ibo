@@ -65,7 +65,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
     layout: device.createPipelineLayout({
       bindGroupLayouts: [uniformBindGroupLayout]
     }),
-    vertex: {
+    vertex: { // 顶点着色
       module: device.createShaderModule({
         code: multiCubesVertexWGSL
       }),
@@ -89,7 +89,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
         }
       ]
     },
-    fragment: {
+    fragment: { // 片元着色
       module: device.createShaderModule({
         code: multiCubesFragmentWGSL
       }),
@@ -100,15 +100,16 @@ const init: TSampleInit = async ({ canvasRef }) => {
         }
       ]
     },
-    primitive: {
+    primitive: { // 图元拼装
       topology: 'triangle-list',
       cullMode: 'back'
     },
-    depthStencil: {
+    depthStencil: { // 深度模板测试信息
       depthWriteEnabled: true,
       depthCompare: 'less',
       format: 'depth24plus'
-    }
+    },
+    // multisample: {}, // 管线的多重采样信息
   })
 
   // depth texture
@@ -140,7 +141,12 @@ const init: TSampleInit = async ({ canvasRef }) => {
   const imageBitmap = await createImageBitmap(img)
   const imageTexture = device.createTexture({
     label: 'image sampled texture',
-    size: [imageBitmap.width, imageBitmap.height, 1],
+    size: [imageBitmap.width, imageBitmap.height, 1], // size序列或者对象
+    // size: {
+    //   width: imageBitmap.width,
+    //   height: imageBitmap.height,
+    //   depthOrArrayLayers: 1
+    // },
     format: 'rgba8unorm',
     usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST
   })
