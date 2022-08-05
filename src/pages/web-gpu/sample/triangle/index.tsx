@@ -19,6 +19,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   //   canvasRef.current.clientWidth * devicePixelRatio, 
   //   canvasRef.current.clientHeight * devicePixelRatio
   // ]
+
   const presentationFormat = navigator.gpu.getPreferredCanvasFormat()
 
   context.configure({
@@ -42,6 +43,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   })
   new Float32Array(vertexBuffer.getMappedRange()).set(vertex)
   vertexBuffer.unmap()
+
   // 颜色
   const color = new Float32Array([1.0, 0.0, 1.0, 1.0])
   const colorBuffer = device.createBuffer({
@@ -51,6 +53,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
   })
   new Float32Array(colorBuffer.getMappedRange()).set(color)
   colorBuffer.unmap()
+  
   // 颜色缓冲区对象在建立完成后，是需要将其装进BindGroup中的，之后我们会将这个BindGroup 传递非渲染通道
   const uniformBingGroupLayout = device.createBindGroupLayout({
     entries: [
