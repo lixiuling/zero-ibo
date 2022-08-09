@@ -1,7 +1,7 @@
-import { TSampleInit, makeSample } from '../../common/layout-gpu'
+import { TSampleInit, makeSample } from '../../../common/layout'
 import triangleVertexWGSL from './vert.wgsl?raw'
 import triangleFragmentWGSL from './fragment.wgsl?raw'
-import { commomClearValue } from '../common/index'
+import { commomClearValue } from '../../common/index'
 
 const init: TSampleInit = async ({ canvasRef }) => {
   // powerPreference: 'high-performance',
@@ -45,42 +45,46 @@ const init: TSampleInit = async ({ canvasRef }) => {
   vertexBuffer.unmap()
 
   // 颜色
-  const color = new Float32Array([1.0, 0.0, 1.0, 1.0])
+  const color = new Float32Array([
+    1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0,
+    0.0, 0.0, 1.0,
+  ])
   const colorBuffer = device.createBuffer({
     size: color.byteLength,
-    usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+    usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
     mappedAtCreation: true
   })
   new Float32Array(colorBuffer.getMappedRange()).set(color)
   colorBuffer.unmap()
   
   // 颜色缓冲区对象在建立完成后，是需要将其装进BindGroup中的，之后我们会将这个BindGroup 传递非渲染通道
-  const uniformBingGroupLayout = device.createBindGroupLayout({
-    entries: [
-      {
-        binding: 0,
-        visibility: GPUShaderStage.FRAGMENT | GPUShaderStage.VERTEX,
-        buffer: {}
-      }
-    ]
-  })
-  const uniformBindGroup = device.createBindGroup({
-    layout: uniformBingGroupLayout,
-    entries: [
-      {
-        binding: 0, // 位置 
-        resource: {
-          buffer: colorBuffer
-        }
-      }
-    ]
-  })
+  // const uniformBingGroupLayout = device.createBindGroupLayout({
+  //   entries: [
+  //     {
+  //       binding: 0,
+  //       visibility: GPUShaderStage.FRAGMENT | GPUShaderStage.VERTEX,
+  //       buffer: {}
+  //     }
+  //   ]
+  // })
+  // const uniformBindGroup = device.createBindGroup({
+  //   layout: uniformBingGroupLayout,
+  //   entries: [
+  //     {
+  //       binding: 0, // 位置 
+  //       resource: {
+  //         buffer: colorBuffer
+  //       }
+  //     }
+  //   ]
+  // })
 
   /** MSAA 通过增加采样点来减轻几何体走样，边缘锯齿 */
   const sampleCount = 4
   const pipeline = device.createRenderPipeline({
     layout: device.createPipelineLayout({
-      bindGroupLayouts: [uniformBingGroupLayout]
+      bindGroupLayouts: []
     }),
     vertex: {
       module: device.createShaderModule({
@@ -95,6 +99,16 @@ const init: TSampleInit = async ({ canvasRef }) => {
               shaderLocation: 0, // 遍历索引
               offset: 0, // 偏移
               format: 'float32x3', // 参数格式
+            }
+          ]
+        },
+        {
+          arrayStride: 4 * 3,
+          attributes: [
+            {
+              shaderLocation: 1,
+              offset: 0,
+              format: 'float32x3'
             }
           ]
         }
@@ -155,8 +169,9 @@ const init: TSampleInit = async ({ canvasRef }) => {
     passEncoder.setPipeline(pipeline)
     // 写入顶点缓冲区
     passEncoder.setVertexBuffer(0, vertexBuffer)
+    passEncoder.setVertexBuffer(1, colorBuffer)
     // 把含有颜色缓冲区的BindGroup写入渲染通道
-    passEncoder.setBindGroup(0, uniformBindGroup)
+    // passEncoder.setBindGroup(0, uniformBindGroup)
     // 绘图，3 个顶点
     passEncoder.draw(3, 1, 0, 0)
     // 结束编码

@@ -1,4 +1,4 @@
-import { makeSample, TSampleInit } from '../../common/layout-gpu'
+import { makeSample, TSampleInit } from '../../../common/layout'
 import {
   cubeVertexArray,
   cubeVertexSize,
@@ -9,7 +9,7 @@ import {
 import { mat4, vec3 } from 'gl-matrix'
 import CubeVertexWGSL from '../cubes/vert.wgsl?raw'
 import TextureFragmentWGSL from './texture.fragment.wgsl?raw'
-import { commomClearValue } from '../common/index'
+import { commomClearValue } from '../../common/index'
 
 const init: TSampleInit = async ({ canvasRef }) => {
   const adapter = await navigator.gpu.requestAdapter()
