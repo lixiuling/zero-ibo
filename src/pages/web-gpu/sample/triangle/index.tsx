@@ -13,6 +13,7 @@ const init: TSampleInit = async ({ canvasRef }) => {
     return
   }
   const context = canvasRef.current.getContext('webgpu');
+  console.log(context, '-------------')
 
   // const devicePixelRatio = window.devicePixelRatio || 1
   // const presentationSize = [
@@ -126,7 +127,8 @@ const init: TSampleInit = async ({ canvasRef }) => {
       ]
     },
     primitive: {
-      topology: 'triangle-list'
+      topology: 'triangle-list',
+      cullMode: 'back',
     },
     multisample: {
       count: sampleCount
@@ -185,8 +187,8 @@ const init: TSampleInit = async ({ canvasRef }) => {
 }
 
 const HelloTriangle: () => JSX.Element = () => makeSample({
-  name: 'Hello Triangle',
-  description: 'Show Triangle',
+  name: 'WebGPU Triangle',
+  description: 'Show WebGPU Triangle',
   init: init
 })
 export default HelloTriangle
